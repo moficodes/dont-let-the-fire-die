@@ -50,7 +50,13 @@ export default async function PlayerDetailPage({ params }: PageProps) {
         <div className="flex flex-col sm:flex-row gap-8 items-start mb-8">
            <div className="w-32 h-32 sm:w-48 sm:h-48 shrink-0 rounded-[2rem] overflow-hidden bg-surface-container-highest shadow-sm">
              {/* eslint-disable-next-line @next/next/no-img-element */}
-             <img src={player.image} alt={player.name} className="w-full h-full object-cover" />
+             {player.image ? (
+               <img src={player.image} alt={player.name} className="w-full h-full object-cover" />
+             ) : (
+               <div className="w-full h-full flex items-center justify-center text-4xl font-bold text-on-surface-variant">
+                 {player.name.charAt(0)}
+               </div>
+             )}
            </div>
 
            <div className="flex-grow">

@@ -133,7 +133,13 @@ export default function Home() {
                   
                   <h3 className={`text-4xl font-bold text-red-900 mb-4 tracking-wider uppercase ${fontShadows.className}`}>Wanted</h3>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={wanted.image} alt={wanted.name} className="w-48 h-48 object-cover mb-4 grayscale contrast-125 border-4 border-[#3e3101]" />
+                  {wanted.image ? (
+                    <img src={wanted.image} alt={wanted.name} className="w-48 h-48 object-cover mb-4 grayscale contrast-125 border-4 border-[#3e3101]" />
+                  ) : (
+                    <div className="w-48 h-48 mb-4 border-4 border-[#3e3101] flex items-center justify-center text-4xl font-bold text-[#3e3101]">
+                      ?
+                    </div>
+                  )}
                   <div className="text-3xl font-bold text-[#3e3101] mb-2">{wanted.name}</div>
                   <div className="text-2xl font-bold text-red-800 mb-2">Reward: {wanted.reward}</div>
                   {wanted.lastSeenLocation && <div className="text-xl text-[#3e3101]">Last seen: {wanted.lastSeenLocation}</div>}

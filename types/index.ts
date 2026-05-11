@@ -66,7 +66,7 @@ export interface GameTime {
 }
 
 export type EventType = 'location_change' | 'achievement' | 'drawback' | 'npc_meet' | 'combat' | 'general';
-export type SagaArc = 'arc_1_intro' | 'arc_2_shadows' | 'arc_3_revelation';
+export type SagaArc = string;
 
 export interface PCNote {
   pcId: string;

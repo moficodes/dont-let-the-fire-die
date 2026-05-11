@@ -33,13 +33,19 @@ export default function ImageCarousel({ images, name }: { images: string[], name
       {/* Blurred edges for material depth constraint */}
       <div className="absolute inset-0 z-10 pointer-events-none shadow-[inset_0_0_40px_rgba(255,248,240,0.8)] dark:shadow-[inset_0_0_40px_rgba(20,18,15,0.8)]"></div>
       
-      <Image
-        src={images[currentIndex]}
-        alt={`${name} - Image ${currentIndex + 1}`}
-        fill
-        className="object-cover transition-opacity duration-500"
-        unoptimized={images[currentIndex].startsWith('http')}
-      />
+      {images[currentIndex] ? (
+        <Image
+          src={images[currentIndex]}
+          alt={`${name} - Image ${currentIndex + 1}`}
+          fill
+          className="object-cover transition-opacity duration-500"
+          unoptimized={images[currentIndex].startsWith('http')}
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center bg-surface-container-high text-outline-variant">
+          <span>Image unavailable</span>
+        </div>
+      )}
 
       {images.length > 1 && (
         <>

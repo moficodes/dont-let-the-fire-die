@@ -10,8 +10,14 @@ const fontKalam = Kalam({ subsets: ["latin"], weight: ["400", "700"] });
 
 const PlayerCard = ({ player }: { player: Player }) => (
   <Link href={`/players/${player.id}`} className="group flex flex-col items-center gap-3 w-48 transition-transform hover:-translate-y-1">
-    {/* eslint-disable-next-line @next/next/no-img-element */}
-    <img src={player.image} alt={player.name} className="w-24 h-24 rounded-full object-cover shadow-sm group-hover:ring-4 ring-primary-container transition-all" />
+    {player.image ? (
+      /* eslint-disable-next-line @next/next/no-img-element */
+      <img src={player.image} alt={player.name} className="w-24 h-24 rounded-full object-cover shadow-sm group-hover:ring-4 ring-primary-container transition-all" />
+    ) : (
+      <div className="w-24 h-24 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center text-4xl font-bold shadow-sm group-hover:ring-4 ring-primary-container transition-all">
+        {player.name.charAt(0)}
+      </div>
+    )}
     <div className="text-center">
       <div className="text-lg font-bold text-on-surface leading-tight">{player.name}</div>
       <div className="text-sm text-primary uppercase font-bold tracking-wider mt-1">{player.class}</div>

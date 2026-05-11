@@ -26,7 +26,13 @@ export default function PlayersPage() {
               <div className="flex items-center gap-4 mb-6">
                 <div className="h-16 w-16 rounded-full overflow-hidden shrink-0 bg-surface-container-highest">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={player.image} alt={player.name} className="h-full w-full object-cover" />
+                  {player.image ? (
+                    <img src={player.image} alt={player.name} className="h-full w-full object-cover" />
+                  ) : (
+                    <div className="h-full w-full flex items-center justify-center text-xl font-bold text-on-surface-variant">
+                      {player.name.charAt(0)}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold text-on-surface leading-tight">{player.name}</h2>
