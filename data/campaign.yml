@@ -130,6 +130,66 @@ players:
       knowledge: 0
     backgroundQuestions: []
     connectionQuestions: []
+  - id: vala-thorne
+    name: Vala Thorne
+    class: Guardian
+    level: 1
+    ancestry: Human
+    community: ''
+    subclass: Vengeance
+    tier: 1
+    image: ''
+    description: ''
+    backstory: ''
+    stats:
+      agility: 0
+      strength: 0
+      finesse: 0
+      instinct: 0
+      presence: 0
+      knowledge: 0
+    backgroundQuestions: []
+    connectionQuestions: []
+  - id: tyrion-lannister
+    name: Tyrion Lannister
+    class: Bard
+    level: 1
+    ancestry: Giant
+    community: ''
+    subclass: Wardsmith
+    tier: 1
+    image: ''
+    description: ''
+    backstory: ''
+    stats:
+      agility: 0
+      strength: 0
+      finesse: 0
+      instinct: 0
+      presence: 0
+      knowledge: 0
+    backgroundQuestions: []
+    connectionQuestions: []
+  - id: drax-borson
+    name: Drax Borson
+    class: Seraph
+    level: 1
+    ancestry: Farbog
+    community: ''
+    subclass: Divine Wulder
+    tier: 1
+    image: ''
+    description: ''
+    backstory: ''
+    stats:
+      agility: 0
+      strength: 0
+      finesse: 0
+      instinct: 0
+      presence: 0
+      knowledge: 0
+    backgroundQuestions: []
+    connectionQuestions: []
 npcs:
   - id: kai-mellathorn
     name: Kai Mellathorn
