@@ -298,6 +298,13 @@ player.command("update")
   .option("--name <string>")
   .option("--class <string>")
   .option("--level <number>", "Player Level", parseInt)
+  .option("--ancestry <string>")
+  .option("--community <string>")
+  .option("--subclass <string>")
+  .option("--tier <number>", "Player Tier", parseInt)
+  .option("--image <string>")
+  .option("--description <string>")
+  .option("--backstory <string>")
   .action(async (id, options) => {
     try {
       const data = await readCampaign(CAMPAIGN_FILE);

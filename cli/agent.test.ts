@@ -60,6 +60,61 @@ afterAll(async () => {
   }
 });
 
+test("player update accepts all scalar player fields", async () => {
+  // Add a player to the fixture first
+  const seed = {
+    ...baseCampaign,
+    players: [
+      {
+        id: "orna",
+        name: "Orna Kaan",
+        class: "Sorcerer",
+        level: 1,
+        ancestry: "",
+        community: "",
+        subclass: "",
+        tier: 1,
+        image: "",
+        description: "",
+        backstory: "",
+        stats: { agility: 0, strength: 0, finesse: 0, instinct: 0, presence: 0, knowledge: 0 },
+        backgroundQuestions: [],
+        connectionQuestions: [],
+      },
+    ],
+  };
+  const localFixture = await setupFixture(seed);
+
+  const result = runAgent(localFixture, [
+    "player", "update", "orna",
+    "--ancestry", "Galapa",
+    "--community", "Loreborn",
+    "--subclass", "Primal Origin",
+    "--tier", "2",
+    "--image", "/images/orna.webp",
+    "--description", "A wise sorcerer.",
+    "--backstory", "She was raised by turtles.",
+  ]);
+  expect(result.status).toBe(0);
+
+  const written = yaml.load(
+    await fs.readFile(path.join(localFixture, "data/campaign.yml"), "utf8"),
+  ) as typeof seed;
+  const orna = written.players.find((p) => p.id === "orna") as any;
+  expect(orna.ancestry).toBe("Galapa");
+  expect(orna.community).toBe("Loreborn");
+  expect(orna.subclass).toBe("Primal Origin");
+  expect(orna.tier).toBe(2);
+  expect(orna.image).toBe("/images/orna.webp");
+  expect(orna.description).toBe("A wise sorcerer.");
+  expect(orna.backstory).toBe("She was raised by turtles.");
+  // Existing fields preserved
+  expect(orna.name).toBe("Orna Kaan");
+  expect(orna.class).toBe("Sorcerer");
+
+  await cleanupFixture(localFixture);
+});
+
 test("npc update accepts --image and --attitudeTowardParty", async () => {
   const result = runAgent(fixture, [
     "npc", "update", "elder",
