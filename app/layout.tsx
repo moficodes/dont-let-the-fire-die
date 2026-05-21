@@ -12,7 +12,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = getCampaignData();
-  const header = (data.home as any).header;
+  const header = data.home.header;
   return {
     title: header?.title || "Sablewood Chronicles",
     description: header?.description || "A Living Chronicle",
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const data = getCampaignData();
-  const navBrand = (data.home as any).header?.navBrand || "Sablewood";
+  const navBrand = data.home.header?.navBrand || "Sablewood";
 
   return (
     <html
