@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sablewood Chronicles
 
-## Getting Started
+A living chronicle for a Daggerheart campaign. A statically-rendered Next.js site
+backed by a single YAML file (`data/campaign.yml`) that contains players, NPCs,
+locations, and timeline events.
 
-First, run the development server:
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
+bun dev                  # public site on http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## The three surfaces
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Surface          | Path         | What it does                                                    | Run                           |
+| ---------------- | ------------ | --------------------------------------------------------------- | ----------------------------- |
+| Public site      | `app/`       | Read-only Next.js site, statically exported to GitHub Pages.    | `bun dev`                     |
+| Admin app        | `admin/`     | Local-only Next.js app for editing `campaign.yml` via a form UI. | `bun run dev:admin` (:3001)   |
+| Interactive TUI  | `cli/`       | Terminal UI (ink) for editing the same YAML.                    | `bun run cli/index.tsx`       |
+| Agent CLI        | `cli/agent.ts` | Non-interactive CLI for scripted edits.                        | `bun run agent --help`        |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All four read/write the same `data/campaign.yml`. The CLI and admin app create
+a `.bak` next to the file before overwriting; the public site is read-only.
 
-## Learn More
+## Tests
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+bun test                 # everything
+bun test cli/data.test.ts
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Rules for contributors (including AI coding agents)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Bun is the only supported package manager. See `AGENTS.md`.
+- UI work must follow `DESIGN.md` (no 1px borders, no `#000`, no sharp corners).
+- New features start with a plan doc in `specs/XX-*.md`.
+- Architecture overview for AI agents lives in `CLAUDE.md`.
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`main` is built and deployed to GitHub Pages by `.github/workflows/nextjs.yml`
+(uses `npm ci` because the GitHub Pages action expects a npm lockfile, so
+`package-lock.json` is committed alongside `bun.lock`).
