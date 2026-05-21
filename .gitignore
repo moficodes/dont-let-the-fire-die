@@ -44,3 +44,6 @@ next-env.d.ts
 # campaign data backups (written by cli/data.ts and admin/lib/yaml-storage.ts)
 data/*.bak
 data/*.tmp
+
+# cli/agent.test.ts fixtures (cleaned up by afterAll, but ignored as belt-and-suspenders)
+.agent-test-*/

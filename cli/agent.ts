@@ -69,6 +69,8 @@ npc.command("update")
   .option("--role <string>")
   .option("--location <string>")
   .option("--description <string>")
+  .option("--image <string>")
+  .option("--attitudeTowardParty <string>")
   .action(async (id, options) => {
     const data = await readCampaign(CAMPAIGN_FILE);
     const index = data.npcs.findIndex((n: any) => n.id === id);
