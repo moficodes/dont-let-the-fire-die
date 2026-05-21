@@ -107,7 +107,7 @@ export default function Home() {
       {hasNoticeBoard && (
         <section className="w-full bg-[#e8dac0] py-16 relative shadow-inner overflow-hidden border-y-8 border-[#c9b79c]">
           {/* Wood texture or board background hint */}
-          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "repeating-linear-gradient(45deg, #000 0, #000 2px, transparent 2px, transparent 8px)" }}></div>
+          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "repeating-linear-gradient(45deg, var(--on-surface) 0, var(--on-surface) 2px, transparent 2px, transparent 8px)" }}></div>
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <h2 className={`text-5xl md:text-6xl text-center mb-16 text-[#3e3101] ${fontShadows.className} font-bold`}>Notice Board</h2>
