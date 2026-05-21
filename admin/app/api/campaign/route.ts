@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
+import { writeYamlAtomic } from '../../../lib/yaml-storage';
 
 // Path relative to the admin app directory (admin/ -> ../data/campaign.yml)
 const getCampaignFilePath = () => path.join(process.cwd(), '../data/campaign.yml');
@@ -22,14 +23,14 @@ export async function PUT(request: Request) {
   try {
     const updatedData = await request.json();
     const filePath = getCampaignFilePath();
-    
+
     // Convert back to YAML, preserving block styles for multiline strings
     const newYamlContent = yaml.dump(updatedData, {
       lineWidth: -1, // Don't wrap long lines
       noRefs: true,
     });
-    
-    fs.writeFileSync(filePath, newYamlContent, 'utf8');
+
+    writeYamlAtomic(filePath, newYamlContent);
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error writing campaign.yml:', error);
