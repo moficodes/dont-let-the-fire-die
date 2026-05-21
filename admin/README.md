@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sablewood Chronicles — Admin
 
-## Getting Started
+Local-only Next.js app for editing the campaign YAML through a form UI.
+Reads and writes `../data/campaign.yml` directly from disk via an internal
+API route (`app/api/campaign/route.ts`).
 
-First, run the development server:
+## Run
+
+From the repo root:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+bun run dev:admin        # http://localhost:3001
+```
+
+Or from this directory:
+
+```bash
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## What it does
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `GET /api/campaign` returns the parsed YAML as JSON.
+- `PUT /api/campaign` accepts JSON and writes it back to `../data/campaign.yml`
+  using `lib/yaml-storage.ts` (atomic rename + `.bak` of the previous version).
+- The `AutoForm` component renders editable fields from the entity schemas in
+  `lib/schemas/`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Not for production
 
-## Learn More
+There is no auth on the API route — it writes to the dev machine's filesystem.
+This app exists to make local content edits faster than hand-editing YAML.
+Never expose it to the internet.
 
-To learn more about Next.js, take a look at the following resources:
+## Rules
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See `../AGENTS.md` (bun-only tooling, `DESIGN.md` constraints) and `./AGENTS.md`
+for admin-specific notes.
