@@ -1,4 +1,5 @@
 import { FieldSchema, EntitySchema } from '../schema';
+import { getSystemPreset } from '../../../lib/systems';
 
 export const QASchema: FieldSchema = {
   type: 'object',
@@ -175,3 +176,61 @@ export const HomeSchema: EntitySchema = {
     }
   }
 };
+
+export function getPlayerSchemaForSystem(gameSystem: string): EntitySchema {
+  const preset = getSystemPreset(gameSystem);
+
+  const schema: EntitySchema = {
+    name: { type: 'string', label: 'Name' },
+    image: { type: 'string', label: 'Image URL', optional: true },
+  };
+
+  // Dynamically map preset details
+  preset.details.forEach(field => {
+    schema[field.key] = {
+      type: field.type,
+      label: field.label,
+      optional: field.optional || false
+    };
+  });
+
+  schema.level = { type: 'number', label: 'Level' };
+  
+  if (gameSystem === 'daggerheart') {
+    schema.tier = { type: 'number', label: 'Tier', optional: true };
+  }
+
+  schema.description = { type: 'textarea', label: 'Description', optional: true };
+  schema.backstory = { type: 'textarea', label: 'Backstory', optional: true };
+
+  // Dynamically map preset stats
+  const statFields: Record<string, FieldSchema> = {};
+  Object.entries(preset.stats).forEach(([statKey, statInfo]) => {
+    statFields[statKey] = {
+      type: 'number',
+      label: statInfo.label
+    };
+  });
+
+  schema.stats = {
+    type: 'object',
+    label: 'Stats',
+    fields: statFields
+  };
+
+  schema.backgroundQuestions = {
+    type: 'array',
+    label: 'Background Questions',
+    optional: true,
+    itemSchema: QASchema
+  };
+
+  schema.connectionQuestions = {
+    type: 'array',
+    label: 'Connection Questions',
+    optional: true,
+    itemSchema: QASchema
+  };
+
+  return schema;
+}

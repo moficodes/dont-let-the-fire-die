@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { use } from 'react';
 import { useRouter } from 'next/navigation';
 import { AutoForm } from '../../../components/AutoForm';
-import { PlayerSchema } from '../../../lib/schemas/campaign';
+import { getPlayerSchemaForSystem, PlayerSchema } from '../../../lib/schemas/campaign';
 import { cleanData } from '../../../lib/utils';
 
 export default function PlayerEdit({ params }: { params: Promise<{ id: string }> }) {
@@ -13,6 +13,7 @@ export default function PlayerEdit({ params }: { params: Promise<{ id: string }>
   const router = useRouter();
   const [fullData, setFullData] = useState<any>(null);
   const [playerData, setPlayerData] = useState<any>(null);
+  const [activeSchema, setActiveSchema] = useState<any>(PlayerSchema);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -22,6 +23,9 @@ export default function PlayerEdit({ params }: { params: Promise<{ id: string }>
         setFullData(data);
         const p = data.players.find((x: any) => x.id === resolvedParams.id);
         setPlayerData(p);
+        
+        const system = data.settings?.gameSystem || 'daggerheart';
+        setActiveSchema(getPlayerSchemaForSystem(system));
       });
   }, [resolvedParams.id]);
 
@@ -29,7 +33,7 @@ export default function PlayerEdit({ params }: { params: Promise<{ id: string }>
     if (!fullData || !playerData) return;
     setSaving(true);
     
-    const cleanedPlayer = cleanData(playerData, PlayerSchema);
+    const cleanedPlayer = cleanData(playerData, activeSchema);
     // ID is preserved by cleanData
     
     const newPlayers = fullData.players.map((p: any) => 
@@ -59,7 +63,7 @@ export default function PlayerEdit({ params }: { params: Promise<{ id: string }>
         </button>
       </div>
 
-      <AutoForm schema={PlayerSchema} data={playerData} onChange={setPlayerData} />
+      <AutoForm schema={activeSchema} data={playerData} onChange={setPlayerData} />
     </div>
   );
 }
