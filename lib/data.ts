@@ -15,11 +15,19 @@ export function getCampaignData(): CampaignData {
   const data = yaml.load(fileContents) as CampaignData;
   
   // Normalize arrays in case they are empty/null/objects in YAML
-  if (!Array.isArray(data.players)) {
+  if (!data.players) {
     data.players = [];
   }
-  if (!Array.isArray(data.locations)) {
+  if (!data.locations) {
     data.locations = [];
+  }
+
+  // Fallback default settings if not defined
+  if (!data.settings) {
+    data.settings = {
+      gameSystem: 'daggerheart',
+      themePreset: 'fantasy-parchment'
+    };
   }
   
   cachedData = data;

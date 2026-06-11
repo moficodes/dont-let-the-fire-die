@@ -122,7 +122,47 @@ export interface HomeData {
   nextDestinationId?: string;
 }
 
+export interface ThemeColorSet {
+  surface: string;
+  surfaceDim?: string;
+  surfaceContainerLowest?: string;
+  surfaceContainerLow?: string;
+  surfaceContainer?: string;
+  surfaceContainerHigh?: string;
+  surfaceContainerHighest?: string;
+  primary: string;
+  primaryContainer?: string;
+  primaryDim?: string;
+  onSurface: string;
+  outlineVariant?: string;
+  secondary?: string;
+  secondaryContainer?: string;
+  onSecondaryContainer?: string;
+  tertiary?: string;
+  tertiaryContainer?: string;
+}
+
+export interface CalendarConfig {
+  type: 'gregorian' | 'custom';
+  eras?: { name: string; abbreviation: string; startYear: number }[];
+  months?: { name: string; days: number }[];
+  daysOfWeek?: string[];
+  hoursPerDay?: number;
+}
+
+export interface CampaignSettings {
+  gameSystem: string;
+  themePreset: string;
+  backgrounds?: Record<string, string>;
+  calendar?: CalendarConfig;
+  customTheme?: {
+    light: ThemeColorSet;
+    dark: ThemeColorSet;
+  };
+}
+
 export interface CampaignData {
+  settings?: CampaignSettings;
   home: HomeData;
   locations: Location[];
   timeline: TimelineData;
