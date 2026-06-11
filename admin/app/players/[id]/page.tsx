@@ -6,6 +6,7 @@ import { use } from 'react';
 import { useRouter } from 'next/navigation';
 import { AutoForm } from '../../../components/AutoForm';
 import { getPlayerSchemaForSystem, PlayerSchema } from '../../../lib/schemas/campaign';
+import { EntitySchema } from '../../../lib/schema';
 import { cleanData } from '../../../lib/utils';
 
 export default function PlayerEdit({ params }: { params: Promise<{ id: string }> }) {
@@ -13,7 +14,7 @@ export default function PlayerEdit({ params }: { params: Promise<{ id: string }>
   const router = useRouter();
   const [fullData, setFullData] = useState<any>(null);
   const [playerData, setPlayerData] = useState<any>(null);
-  const [activeSchema, setActiveSchema] = useState<any>(PlayerSchema);
+  const [activeSchema, setActiveSchema] = useState<EntitySchema>(PlayerSchema);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
