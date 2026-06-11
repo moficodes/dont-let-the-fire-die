@@ -31,6 +31,7 @@ export const HomeSchema = z.object({
 });
 
 export const CampaignSchema = z.object({
+  settings: z.any().optional(),
   home: HomeSchema,
   locations: z.array(z.any()), // Simplified for initial schema
   timeline: z.object({
