@@ -59,7 +59,7 @@
   --color-tertiary: var(--tertiary);
   --color-tertiary-container: var(--tertiary-container);
 
-  --font-sans: var(--font-plus-jakarta), Arial, Helvetica, sans-serif;
+  --font-sans: var(--font-active), Arial, Helvetica, sans-serif;
 }
 
 body {
