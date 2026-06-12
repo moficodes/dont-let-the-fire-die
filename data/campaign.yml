@@ -1,209 +1,214 @@
 home:
   header:
-    title: Sablewood Chronicles
+    title: Don't Let the Fire Die
     description: >-
-      Welcome to the living record of our adventures, heroes, and the world we
-      shape together.
-    navBrand: Sablewood
-  nextSession: June 26, 2026 at 7 p.m.
+      In a dying world immersed in relentless shadow and nightmarish monsters,
+      small communities hold fast to the light, hoping those who endure can find
+      a way to save this broken realm before all is lost to darkness.
+    navBrand: Death Awaits You!
+  nextSession: To Be Scheduled
+  lastLocationId: okros
+  nextDestinationId: sunken-swamp
+  activeQuest:
+    title: Search the Sunken Swamp for a blessed branch
+    status: active
+    locationId: sunken-swamp
+    description: >-
+      The party must venture north of Okros into the dangerous, mist-choked Sunken
+      Swamp to find a Blessed Branch to reignite a Sacred Pyre and bring a point
+      of light back to the dark.
   questList:
-    - title: Deliver the Box to Hush
+    - title: Find a Blessed Branch
       status: active
-      locationId: hush
+      locationId: sunken-swamp
       description: >-
-        King Emeris has tasked Orna Kaan and her newly recruited companions,  to
-        deliver a mysterious box from the capital of Solitaire to the village of
-        Hush.
+        Locate a holy, ancient Blessed Branch to allow the light of a Sacred Pyre
+        to stand resilient against the Umbra once more.
 locations:
-  - id: solitaire
-    name: Solitaire
-    region: Kingdom of Hearth
+  - id: okros
+    name: Okros
+    region: Idol Hollows
     description: >-
-      The capital city of the Kingdom of Hearth and the seat of King Emeris. It
-      serves as the main trade hub of the kingdom. The city has stood for
-      thousands of years and is magically protected through wards and runes,
-      with a total population of eight thousand.
-  - id: hush
-    name: Hush
-    region: Unknown
+      An emergent fort village standing resilient for over fifty years within the
+      swampy flood plains of the mountain-crowned Idol Hollows. Its massive walls
+      of melted shields and stone encircle the central Sacred Pyre, whose flames
+      serve as a beacon of hope and safety.
+  - id: sunken-swamp
+    name: Sunken Swamp
+    region: Idol Hollows
     description: >-
-      A village that the party is currently traveling towards to deliver a box
-      for King Emeris.
-  - id: sablewood-forest
-    name: The Sablewood Forest
+      A dangerous, mist-choked wetland located north of Okros, filled with
+      mutated beasts and terrifying horrors.
+  - id: cradle-of-lament
+    name: Cradle of Lament
+    region: Idol Hollows
     description: >-
-      The Sablewood is an ancient, expansive forest of trees that reach hundreds
-      of feet into the air. Rumored to be older than the Forgotten Gods, this
-      dense wood is widely known throughout the Mortal Realm, and many who visit
-      are surprised to learn that the stories they believed were exaggerated
-      legends are, in fact, stark truths.
+      A nearby refuge whose protection recently failed when its Sacred Pyre was
+      destroyed.
+  - id: shalk-chasm
+    name: Shalk Chasm
+    region: Idol Hollows
+    description: >-
+      A massive subterranean sinkhole conjured by a recent seismic event,
+      uncovering an expanse of long-buried ruins and a forgotten temple of an
+      obscure Veiled God.
+  - id: amber-reach
+    name: Amber Reach
+    region: Griefcleft Mountains
+    description: >-
+      The fallen and haunted capital city. It houses the Celsian Athenaeum
+      stronghold and is contested by the ruthless Damask Queens raider faction.
 timeline:
   title: Campaign Timeline
   subtitle: The story so far
-  description: Events of our heroes
+  description: Record of our heroes' actions and historical turning points.
   events:
+    - id: evt-betrayal
+      title: Betrayal of the Gods
+      time:
+        era: Age of Umbra
+        year: 0
+        month: Oth-Ascent
+        day: 1
+        hour: 0
+        minute: 0
+      type: general
+      description: >-
+        God-King Othedias betrayed the Pantheon, invoking divine punishment and
+        abandonment by the gods, leaving the realm of the Halcyon Domain
+        shattered, desolate, and eternally cursed.
+    - id: evt-earthquake
+      title: Earthquake Unearths Shalk Chasm
+      time:
+        era: Age of Umbra
+        year: 100
+        month: Shade-Weave
+        day: 8
+        hour: 6
+        minute: 0
+      type: location_change
+      locationId: shalk-chasm
+      description: >-
+        A sudden, massive seismic event rips through the valley, tearing open a
+        deep sinkhole known as the Shalk Chasm and exposing long-buried
+        structures from the Old World.
+    - id: evt-cradle-destroyed
+      title: The Cradle's Fire Dies
+      time:
+        era: Age of Umbra
+        year: 100
+        month: Shade-Weave
+        day: 8
+        hour: 7
+        minute: 0
+      type: drawback
+      locationId: cradle-of-lament
+      description: >-
+        Just an hour after the earthquake, the Sacred Pyre in the Cradle of
+        Lament is destroyed, plunging the sanctuary into the vulnerability of the
+        dark.
     - id: evt-journey-begins
       title: The Journey Begins
       time:
-        era: Enlightenement
-        year: 3982
-        month: Tolmir
-        day: 4
-        hour: 12
-        minute: 45
+        era: Age of Umbra
+        year: 100
+        month: Shade-Weave
+        day: 9
+        hour: 9
+        minute: 0
       type: location_change
-      description: The party takes the box with them and starts their journey towards Hush.
-      locationId: solitaire
-    - id: evt-ambush
-      title: Ambush on the Road
+      locationId: okros
+      description: >-
+        The party leaves Okros and starts their journey north toward the Sunken
+        Swamp to search for a Blessed Branch to reignite the fading embers of
+        hope.
+    - id: evt-boar-encounter
+      title: The Tentacled Terror
       time:
-        era: Enlightenement
-        year: 3982
-        month: Tolmir
-        day: 4
-        hour: 19
+        era: Age of Umbra
+        year: 100
+        month: Shade-Weave
+        day: 18
+        hour: 17
         minute: 0
       type: combat
+      locationId: sunken-swamp
       description: >-
-        The party finds a cart in the road that was blocked. They encounter a
-        group of strix wolf. Once they peacefully deal with the Strix Wolf, they
-        were ambushed by a group of thistle folk. The party barely manages to
-        fight them off.
+        Deep within the marshlands, the party encounters an Umbra-Touched Boar,
+        its mouth twisted into thrashing tentacles and extra hands reaching from
+        its torso.
 players:
-  - id: orna-kaan
-    name: Orna Kaan
-    class: Sorcerer
-    level: 1
-    ancestry: Galapa
-    community: Loreborn
-    subclass: Primal Origin
+  - id: stan-jr
+    name: Stan Jr.
+    class: Ranger
+    level: 3
+    ancestry: Ribbet
+    community: Wildborne
+    subclass: ''
     tier: 1
     image: ''
-    description: ''
-    backstory: ''
-    stats:
-      agility: 0
-      strength: -1
-      finesse: 1
-      instinct: 2
-      presence: 1
-      knowledge: 0
-    backgroundQuestions: []
-    connectionQuestions: []
-  - id: fantasia
-    name: Fantasia
-    class: Druid
-    level: 1
-    ancestry: Faun
-    community: Wanderborne
-    subclass: Warden of Elements
-    tier: 1
-    image: ''
-    description: ''
-    backstory: ''
+    description: TBD
+    backstory: TBD
     stats:
       agility: 1
       strength: 0
-      finesse: 1
-      instinct: 2
-      presence: -1
-      knowledge: 0
-    backgroundQuestions: []
-    connectionQuestions: []
-  - id: dracarys
-    name: Dracarys
-    class: Rogue
-    level: 1
-    ancestry: Drakona
-    community: Underborne
-    subclass: Nightwalker
-    tier: 1
-    image: ''
-    description: ''
-    backstory: ''
-    stats:
-      agility: 1
-      strength: -1
       finesse: 2
-      instinct: 0
+      instinct: 1
+      presence: -1
+      knowledge: 1
+    backgroundQuestions: []
+    connectionQuestions: []
+  - id: zenith
+    name: Zenith
+    class: Brawler
+    level: 3
+    ancestry: Clank
+    community: Ridgeborne
+    subclass: ''
+    tier: 1
+    image: ''
+    description: TBD
+    backstory: TBD
+    stats:
+      agility: -1
+      strength: 2
+      finesse: 0
+      instinct: 1
       presence: 1
-      knowledge: 0
+      knowledge: 1
     backgroundQuestions: []
     connectionQuestions: []
-  - id: vala-thorne
-    name: Vala Thorne
-    class: Guardian
-    level: 1
-    ancestry: Human
-    community: ''
-    subclass: Vengeance
-    tier: 1
-    image: ''
-    description: ''
-    backstory: ''
-    stats:
-      agility: 0
-      strength: 0
-      finesse: 0
-      instinct: 0
-      presence: 0
-      knowledge: 0
-    backgroundQuestions: []
-    connectionQuestions: []
-  - id: tyrion-lannister
-    name: Tyrion Lannister
-    class: Bard
-    level: 1
-    ancestry: Giant
-    community: ''
-    subclass: Wardsmith
-    tier: 1
-    image: ''
-    description: ''
-    backstory: ''
-    stats:
-      agility: 0
-      strength: 0
-      finesse: 0
-      instinct: 0
-      presence: 0
-      knowledge: 0
-    backgroundQuestions: []
-    connectionQuestions: []
-  - id: drax-borson
-    name: Drax Borson
+  - id: fury
+    name: Fury
     class: Seraph
-    level: 1
-    ancestry: Farbog
-    community: ''
-    subclass: Divine Wulder
+    level: 3
+    ancestry: Faerie
+    community: Underborne
+    subclass: ''
     tier: 1
     image: ''
-    description: ''
-    backstory: ''
+    description: TBD
+    backstory: TBD
     stats:
-      agility: 0
-      strength: 0
-      finesse: 0
-      instinct: 0
-      presence: 0
+      agility: 1
+      strength: -1
+      finesse: 1
+      instinct: 1
+      presence: 2
       knowledge: 0
     backgroundQuestions: []
     connectionQuestions: []
 npcs:
-  - id: kai-mellathorn
-    name: Kai Mellathorn
-    role: Galapa Citizen
-    location: solitaire
+  - id: tomas
+    name: Tomaś
+    role: Fighter
+    location: okros
     description: >-
-      A Galapa located in Solitaire. The party met him at the beginning of the
-      campaign. He had a notably negative interaction with Orna Kaan, where he
-      talked down to her quite a bit.
-  - id: king-emeris
-    name: King Emeris
-    role: King of Hearth
-    location: solitaire
+      A young human fighter traveling with Stan Jr.
+  - id: biff
+    name: Biff
+    role: Warrior
+    location: okros
     description: >-
-      The King of the Kingdom of Hearth and the main quest giver to the party.
-      He employs Orna Kaan as his right-hand sorcerer. He tasked the party with
-      delivering a mysterious box to the village of Hush.
+      A Drakona warrior traveling with the party. He is a quiet individual of
+      very few words.
