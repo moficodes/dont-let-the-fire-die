@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "agent": "bun run cli/agent.ts"
+    "agent": "bun run cli/agent.ts",
+    "setup": "bun run cli/init-campaign.ts"
   },
   "dependencies": {
     "commander": "^14.0.3",
