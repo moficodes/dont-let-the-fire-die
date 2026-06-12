@@ -45,5 +45,8 @@ next-env.d.ts
 data/*.bak
 data/*.tmp
 
+# superpowers brainstorming companion cache
+.superpowers/
+
 # cli/agent.test.ts fixtures (cleaned up by afterAll, but ignored as belt-and-suspenders)
 .agent-test-*/

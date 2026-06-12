@@ -71,3 +71,14 @@ body {
 h1, h2, h3, h4, h5, h6, .font-display, .font-serif {
   font-family: var(--font-active-heading), Georgia, serif;
 }
+
+/* Polymorphic card interactive transitions */
+.theme-card-interactive {
+  transition: transform var(--transition-speed, 200ms), box-shadow var(--transition-speed, 200ms), border-color var(--transition-speed, 200ms);
+}
+
+.theme-card-interactive:hover {
+  transform: var(--hover-transform, none);
+  box-shadow: var(--hover-shadow, none);
+  border-color: var(--hover-border-color, inherit);
+}
