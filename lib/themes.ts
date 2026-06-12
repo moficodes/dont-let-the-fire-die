@@ -36,6 +36,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#814000',
       tertiary: '#2d6a4f',
       tertiaryContainer: '#beffdc',
+      radiusContainer: '2.5rem 1rem 2.5rem 1rem',
+      borderContainer: '1px solid rgba(196,177,116,0.2)',
+      shadowContainer: '0 15px 45px rgba(62,49,1,0.05)',
+      transitionSpeed: '0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      hoverTransform: 'translateY(-6px)',
+      hoverShadow: '0 25px 60px rgba(62,49,1,0.1)'
     },
     dark: {
       surface: '#2c2317',
@@ -55,6 +61,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#ffdcc5',
       tertiary: '#72d6a4',
       tertiaryContainer: '#0e4a30',
+      radiusContainer: '2.5rem 1rem 2.5rem 1rem',
+      borderContainer: '1px solid rgba(110,98,66,0.3)',
+      shadowContainer: '0 15px 45px rgba(0,0,0,0.3)',
+      transitionSpeed: '0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      hoverTransform: 'translateY(-6px)',
+      hoverShadow: '0 25px 60px rgba(0,0,0,0.5)'
     }
   },
   'gothic-horror': {
@@ -76,6 +88,13 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#3c1515',
       tertiary: '#484a3a',
       tertiaryContainer: '#e2e7c3',
+      radiusContainer: '4px',
+      borderContainer: '1px solid var(--outline-variant)',
+      shadowContainer: '0 10px 40px rgba(0,0,0,0.06)',
+      transitionSpeed: '0.4s ease-in-out',
+      hoverTransform: 'translateY(-4px)',
+      hoverShadow: '0 20px 50px rgba(74,14,23,0.12)',
+      hoverBorderColor: 'var(--primary)'
     },
     dark: {
       surface: '#171212',
@@ -95,6 +114,13 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#ffdad8',
       tertiary: '#b7c79e',
       tertiaryContainer: '#2c371a',
+      radiusContainer: '4px',
+      borderContainer: '1px solid var(--outline-variant)',
+      shadowContainer: '0 10px 40px rgba(0,0,0,0.5)',
+      transitionSpeed: '0.4s ease-in-out',
+      hoverTransform: 'translateY(-4px)',
+      hoverShadow: '0 20px 50px rgba(74,14,23,0.3)',
+      hoverBorderColor: 'var(--primary)'
     }
   },
   'cyberpunk': {
@@ -116,6 +142,14 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#001c34',
       tertiary: '#008b62',
       tertiaryContainer: '#c5ffe2',
+      radiusContainer: '0px',
+      borderContainer: '1px solid var(--primary)',
+      shadowContainer: '0 0 10px rgba(208,28,191,0.05)',
+      clipPathContainer: 'polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15% 100%, 0 calc(100% - 15px))',
+      transitionSpeed: '0.1s ease',
+      hoverTransform: 'none',
+      hoverShadow: '0 0 20px var(--primary)',
+      hoverBorderColor: 'var(--primary)'
     },
     dark: {
       surface: '#05050e',
@@ -135,6 +169,14 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#caf6ff',
       tertiary: '#ffff00',
       tertiaryContainer: '#555500',
+      radiusContainer: '0px',
+      borderContainer: '1px solid var(--primary)',
+      shadowContainer: '0 0 10px rgba(57,255,20,0.1)',
+      clipPathContainer: 'polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15% 100%, 0 calc(100% - 15px))',
+      transitionSpeed: '0.1s ease',
+      hoverTransform: 'none',
+      hoverShadow: '0 0 20px var(--primary)',
+      hoverBorderColor: 'var(--primary)'
     }
   },
   'space-scifi': {
@@ -156,6 +198,13 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#03045e',
       tertiary: '#90e0ef',
       tertiaryContainer: '#e0f7fa',
+      radiusContainer: '1rem',
+      borderContainer: '1px solid var(--primary)',
+      shadowContainer: '0 0 15px rgba(0,150,199,0.05)',
+      clipPathContainer: 'polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)',
+      transitionSpeed: '0.2s cubic-bezier(0.25, 0.8, 0.25, 1)',
+      hoverTransform: 'scale(1.01)',
+      hoverShadow: '0 0 25px rgba(0,150,199,0.2)'
     },
     dark: {
       surface: '#0b0f19',
@@ -175,6 +224,13 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#99f6e4',
       tertiary: '#2563eb',
       tertiaryContainer: '#1d4ed8',
+      radiusContainer: '1rem',
+      borderContainer: '1px solid var(--primary)',
+      shadowContainer: '0 0 15px rgba(0,229,255,0.1)',
+      clipPathContainer: 'polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)',
+      transitionSpeed: '0.2s cubic-bezier(0.25, 0.8, 0.25, 1)',
+      hoverTransform: 'scale(1.01)',
+      hoverShadow: '0 0 25px rgba(0,229,255,0.25)'
     }
   },
   'whimsical': {
@@ -196,6 +252,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#831843',
       tertiary: '#10b981',
       tertiaryContainer: '#d1fae5',
+      radiusContainer: '2.5rem',
+      borderContainer: 'none',
+      shadowContainer: '0 12px 30px rgba(168,85,247,0.04)',
+      transitionSpeed: '0.35s cubic-bezier(0.175, 0.885, 0.32, 1.4)',
+      hoverTransform: 'scale(1.05) translateY(-5px)',
+      hoverShadow: '0 20px 45px rgba(168,85,247,0.14)'
     },
     dark: {
       surface: '#201530',
@@ -215,6 +277,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#fce7f3',
       tertiary: '#34d399',
       tertiaryContainer: '#064e3b',
+      radiusContainer: '2.5rem',
+      borderContainer: 'none',
+      shadowContainer: '0 12px 30px rgba(0,0,0,0.3)',
+      transitionSpeed: '0.35s cubic-bezier(0.175, 0.885, 0.32, 1.4)',
+      hoverTransform: 'scale(1.05) translateY(-5px)',
+      hoverShadow: '0 20px 45px rgba(233,213,255,0.15)'
     }
   },
   'gritty': {
@@ -236,6 +304,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#1a1a17',
       tertiary: '#3b3b33',
       tertiaryContainer: '#ecece9',
+      radiusContainer: '2px',
+      borderContainer: '3px solid var(--on-surface)',
+      shadowContainer: '4px 4px 0px var(--on-surface)',
+      transitionSpeed: '0.1s ease',
+      hoverTransform: 'translate(-2px, -2px)',
+      hoverShadow: '6px 6px 0px var(--on-surface)'
     },
     dark: {
       surface: '#1d1b1a',
@@ -255,6 +329,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#f5f5f3',
       tertiary: '#b3b3aa',
       tertiaryContainer: '#4f4f46',
+      radiusContainer: '2px',
+      borderContainer: '3px solid var(--on-surface)',
+      shadowContainer: '4px 4px 0px var(--on-surface)',
+      transitionSpeed: '0.1s ease',
+      hoverTransform: 'translate(-2px, -2px)',
+      hoverShadow: '6px 6px 0px var(--on-surface)'
     }
   },
   'heroic': {
@@ -276,6 +356,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#0f3a5f',
       tertiary: '#346b5a',
       tertiaryContainer: '#d5ece3',
+      radiusContainer: '1.5rem',
+      borderContainer: '2px solid var(--outline-variant)',
+      shadowContainer: '0 10px 30px rgba(0,0,0,0.04)',
+      transitionSpeed: '0.2s ease-out',
+      hoverTransform: 'scale(1.02)',
+      hoverShadow: '0 15px 35px rgba(15,58,95,0.08)'
     },
     dark: {
       surface: '#0b1a30',
@@ -295,6 +381,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#edf1f7',
       tertiary: '#70a597',
       tertiaryContainer: '#1b3f36',
+      radiusContainer: '1.5rem',
+      borderContainer: '2px solid var(--outline-variant)',
+      shadowContainer: '0 10px 30px rgba(0,0,0,0.4)',
+      transitionSpeed: '0.2s ease-out',
+      hoverTransform: 'scale(1.02)',
+      hoverShadow: '0 15px 35px rgba(217,160,20,0.15)'
     }
   },
   'pirate': {
@@ -316,6 +408,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#002022',
       tertiary: '#2d6a4f',
       tertiaryContainer: '#d8f3dc',
+      radiusContainer: '2rem',
+      borderContainer: '2px solid var(--outline-variant)',
+      shadowContainer: '0 10px 25px rgba(0,0,0,0.06)',
+      transitionSpeed: '0.25s ease-out',
+      hoverTransform: 'translateY(-5px)',
+      hoverShadow: '0 20px 45px rgba(28,98,101,0.15)'
     },
     dark: {
       surface: '#0d1721',
@@ -335,6 +433,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#d1fae5',
       tertiary: '#00f5d4',
       tertiaryContainer: '#005f52',
+      radiusContainer: '2rem',
+      borderContainer: '2px solid var(--outline-variant)',
+      shadowContainer: '0 10px 25px rgba(0,0,0,0.4)',
+      transitionSpeed: '0.25s ease-out',
+      hoverTransform: 'translateY(-5px)',
+      hoverShadow: '0 20px 45px rgba(0,245,212,0.15)'
     }
   },
   'horror': {
@@ -356,6 +460,13 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#350003',
       tertiary: '#212529',
       tertiaryContainer: '#e9ecef',
+      radiusContainer: '2px',
+      borderContainer: '2px solid var(--outline-variant)',
+      shadowContainer: '0 15px 35px rgba(0,0,0,0.15)',
+      transitionSpeed: '0.5s ease',
+      hoverTransform: 'none',
+      hoverShadow: '0 0 30px rgba(127,0,0,0.2)',
+      hoverBorderColor: 'var(--primary)'
     },
     dark: {
       surface: '#090808',
@@ -375,6 +486,13 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#ffdadb',
       tertiary: '#adb5bd',
       tertiaryContainer: '#212529',
+      radiusContainer: '2px',
+      borderContainer: '2px solid var(--outline-variant)',
+      shadowContainer: '0 15px 35px rgba(0,0,0,0.5)',
+      transitionSpeed: '0.5s ease',
+      hoverTransform: 'none',
+      hoverShadow: '0 0 30px rgba(255,51,51,0.25)',
+      hoverBorderColor: 'var(--primary)'
     }
   },
   'lovecraftian': {
@@ -396,6 +514,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#00251a',
       tertiary: '#4a148c',
       tertiaryContainer: '#f3e5f5',
+      radiusContainer: '8px',
+      borderContainer: '1px solid var(--outline-variant)',
+      shadowContainer: '0 10px 30px rgba(0,0,0,0.06)',
+      transitionSpeed: '0.4s ease-in-out',
+      hoverTransform: 'scale(1.02)',
+      hoverShadow: '0 0 25px rgba(103,58,183,0.2)'
     },
     dark: {
       surface: '#071415',
@@ -415,6 +539,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#f7d2ff',
       tertiary: '#00f5d4',
       tertiaryContainer: '#004d41',
+      radiusContainer: '8px',
+      borderContainer: '1px solid var(--outline-variant)',
+      shadowContainer: '0 10px 30px rgba(0,0,0,0.5)',
+      transitionSpeed: '0.4s ease-in-out',
+      hoverTransform: 'scale(1.02)',
+      hoverShadow: '0 0 25px var(--primary)'
     }
   },
   'fey': {
@@ -436,6 +566,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#4a044e',
       tertiary: '#10b981',
       tertiaryContainer: '#d1fae5',
+      radiusContainer: '3rem 1rem 3rem 1rem',
+      borderContainer: 'none',
+      shadowContainer: '0 15px 35px rgba(236,72,153,0.03)',
+      transitionSpeed: '0.3s cubic-bezier(0.175, 0.885, 0.32, 1.25)',
+      hoverTransform: 'translateY(-5px)',
+      hoverShadow: '0 25px 50px rgba(236,72,153,0.08)'
     },
     dark: {
       surface: '#180424',
@@ -455,6 +591,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#fae8ff',
       tertiary: '#34d399',
       tertiaryContainer: '#064e3b',
+      radiusContainer: '3rem 1rem 3rem 1rem',
+      borderContainer: 'none',
+      shadowContainer: '0 15px 35px rgba(0,0,0,0.4)',
+      transitionSpeed: '0.3s cubic-bezier(0.175, 0.885, 0.32, 1.25)',
+      hoverTransform: 'translateY(-5px)',
+      hoverShadow: '0 25px 50px rgba(244,114,182,0.1)'
     }
   },
   'underworld': {
@@ -476,6 +618,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#1c1811',
       tertiary: '#403c34',
       tertiaryContainer: '#eae7e1',
+      radiusContainer: '12px',
+      borderContainer: '2px solid var(--outline-variant)',
+      shadowContainer: '0 12px 30px rgba(0,0,0,0.08)',
+      transitionSpeed: '0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+      hoverTransform: 'scale(1.03)',
+      hoverShadow: '0 15px 35px rgba(221,107,32,0.15)'
     },
     dark: {
       surface: '#141316',
@@ -495,6 +643,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#f8f4ed',
       tertiary: '#c7c4b9',
       tertiaryContainer: '#35332e',
+      radiusContainer: '12px',
+      borderContainer: '2px solid var(--outline-variant)',
+      shadowContainer: '0 12px 30px rgba(0,0,0,0.5)',
+      transitionSpeed: '0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+      hoverTransform: 'scale(1.03)',
+      hoverShadow: '0 15px 35px var(--primary)'
     }
   },
   'steampunk': {
@@ -516,6 +670,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#2c1e0f',
       tertiary: '#415a77',
       tertiaryContainer: '#e0e6ed',
+      radiusContainer: '12px',
+      borderContainer: '4px solid var(--primary)',
+      shadowContainer: 'inset 0 0 15px rgba(0,0,0,0.06), 0 10px 30px rgba(0,0,0,0.04)',
+      transitionSpeed: '0.25s ease',
+      hoverTransform: 'scale(1.02)',
+      hoverShadow: '0 15px 40px rgba(184,115,51,0.12)'
     },
     dark: {
       surface: '#1e1711',
@@ -535,6 +695,12 @@ export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeCol
       onSecondaryContainer: '#ecd9c6',
       tertiary: '#a3b18a',
       tertiaryContainer: '#344e41',
+      radiusContainer: '12px',
+      borderContainer: '4px solid var(--primary)',
+      shadowContainer: 'inset 0 0 15px rgba(0,0,0,0.4), 0 10px 30px rgba(0,0,0,0.5)',
+      transitionSpeed: '0.25s ease',
+      hoverTransform: 'scale(1.02)',
+      hoverShadow: '0 15px 40px rgba(184,115,51,0.2)'
     }
   }
 };

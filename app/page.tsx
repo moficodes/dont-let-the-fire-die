@@ -4,6 +4,7 @@ import { getCampaignData } from "@/lib/data";
 import { HomeData, Player, Location } from "@/types";
 import { ArrowRight, PlaneTakeoff, Shield } from "lucide-react";
 import PlayerList from "./components/player-list";
+import { ThemeCard, ThemeDivider } from "./components/theme-elements";
 
 // Load handwriting fonts for the Quest Board
 const fontCaveat = Caveat({ subsets: ["latin"], weight: ["400", "700"] });
@@ -11,7 +12,8 @@ const fontKalam = Kalam({ subsets: ["latin"], weight: ["400", "700"] });
 const fontShadows = Shadows_Into_Light({ subsets: ["latin"], weight: ["400"] });
 
 export default function Home() {
-  const { home: homeDataRaw, players: playersDataRaw, locations: locationsDataRaw } = getCampaignData();
+  const { home: homeDataRaw, players: playersDataRaw, locations: locationsDataRaw, settings } = getCampaignData();
+  const themePreset = settings?.themePreset || "fantasy-parchment";
 
   const homeData: HomeData = homeDataRaw as unknown as HomeData;
   const players: Player[] = playersDataRaw as unknown as Player[];
@@ -26,7 +28,7 @@ export default function Home() {
   const hasActiveQuest = homeData.activeQuest && Object.keys(homeData.activeQuest).length > 0 && homeData.activeQuest.title;
 
   return (
-    <div className="flex flex-col gap-12 pb-24">
+    <div className="flex flex-col pb-24">
       {/* 1. Welcome the players */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 text-center w-full">
         <h1 className="text-5xl md:text-6xl font-bold text-primary mb-4 tracking-tight">
@@ -37,71 +39,83 @@ export default function Home() {
         </p>
       </section>
 
+      <ThemeDivider preset={themePreset} />
+
       {/* 2. Screen width horizontal list of party members */}
       <PlayerList players={players} />
 
+      <ThemeDivider preset={themePreset} />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col gap-12">
         {/* 3. Banner of notice for next session */}
-        <section className="bg-secondary-container text-on-secondary-container rounded-2xl p-6 md:p-8 flex items-center justify-between shadow-sm">
-          <div>
-            <h2 className="text-sm uppercase font-bold tracking-widest opacity-80 mb-1">Next Session</h2>
-            <p className="text-2xl md:text-3xl font-bold">{homeData.nextSession || "Not scheduled yet"}</p>
-          </div>
-          <div className="hidden md:block">
-            <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-surface-container-lowest text-secondary">
-              <Shield size={32} />
-            </span>
-          </div>
+        <section className="w-full">
+          <ThemeCard className="p-6 md:p-8 flex items-center justify-between">
+            <div>
+              <h2 className="text-sm uppercase font-bold tracking-widest opacity-80 mb-1">Next Session</h2>
+              <p className="text-2xl md:text-3xl font-bold">{homeData.nextSession || "Not scheduled yet"}</p>
+            </div>
+            <div className="hidden md:block">
+              <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-surface-container text-secondary">
+                <Shield size={32} />
+              </span>
+            </div>
+          </ThemeCard>
         </section>
 
         {/* 4. Flight notification style locations */}
         {(lastLocation || nextLocation) && (
-          <section className="bg-surface-container-lowest border-2 border-surface-container rounded-3xl p-6 md:p-10 shadow-sm relative overflow-hidden">
-            <h2 className="text-sm uppercase font-bold text-outline-variant tracking-widest mb-6 text-center">Journey Status</h2>
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 relative z-10">
-              
-              {/* Last Location */}
-              {lastLocation && (
-                <div className="flex-1 text-center md:text-left w-full">
-                  <div className="text-sm text-primary font-bold uppercase tracking-wider mb-2">Departed</div>
-                  <div className="text-3xl font-bold text-on-surface">{lastLocation.name}</div>
-                  <div className="text-outline-variant">{lastLocation.region}</div>
-                </div>
-              )}
-
-              {/* Connecting Arrow/Flight Path */}
-              {lastLocation && nextLocation && (
-                <div className="flex-shrink-0 flex flex-col items-center justify-center px-4 md:px-8">
-                  <div className="h-1 w-full md:w-32 bg-outline-variant/30 rounded-full flex items-center justify-center relative">
-                    <PlaneTakeoff className="text-primary absolute bg-surface-container-lowest px-2" size={40} />
+          <section className="w-full">
+            <ThemeCard className="p-6 md:p-10 relative overflow-hidden">
+              <h2 className="text-sm uppercase font-bold text-outline-variant tracking-widest mb-6 text-center">Journey Status</h2>
+              <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 relative z-10">
+                
+                {/* Last Location */}
+                {lastLocation && (
+                  <div className="flex-1 text-center md:text-left w-full">
+                    <div className="text-sm text-primary font-bold uppercase tracking-wider mb-2">Departed</div>
+                    <div className="text-3xl font-bold text-on-surface">{lastLocation.name}</div>
+                    <div className="text-outline-variant">{lastLocation.region}</div>
                   </div>
-                  <div className="text-sm font-bold text-outline-variant mt-4">EN ROUTE</div>
-                </div>
-              )}
+                )}
 
-              {/* Next Location */}
-              {nextLocation && (
-                <div className="flex-1 text-center md:text-right w-full">
-                  <div className="text-sm text-secondary font-bold uppercase tracking-wider mb-2">Destination</div>
-                  <div className="text-3xl font-bold text-on-surface">{nextLocation.name}</div>
-                  <div className="text-outline-variant">{nextLocation.region}</div>
-                </div>
-              )}
-            </div>
+                {/* Connecting Arrow/Flight Path */}
+                {lastLocation && nextLocation && (
+                  <div className="flex-shrink-0 flex flex-col items-center justify-center px-4 md:px-8">
+                    <div className="h-1 w-full md:w-32 bg-outline-variant/30 rounded-full flex items-center justify-center relative">
+                      <PlaneTakeoff className="text-primary absolute bg-surface-container px-2" size={40} />
+                    </div>
+                    <div className="text-sm font-bold text-outline-variant mt-4">EN ROUTE</div>
+                  </div>
+                )}
+
+                {/* Next Location */}
+                {nextLocation && (
+                  <div className="flex-1 text-center md:text-right w-full">
+                    <div className="text-sm text-secondary font-bold uppercase tracking-wider mb-2">Destination</div>
+                    <div className="text-3xl font-bold text-on-surface">{nextLocation.name}</div>
+                    <div className="text-outline-variant">{nextLocation.region}</div>
+                  </div>
+                )}
+              </div>
+            </ThemeCard>
           </section>
         )}
 
         {/* 5. Current Active Quest */}
         {hasActiveQuest && (
-          <section className="bg-surface-dim rounded-3xl p-8 md:p-12 text-center">
-            <h2 className="text-sm uppercase font-bold text-primary tracking-widest mb-4">Current Main Objective</h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-on-surface mb-6">{homeData.activeQuest!.title}</h3>
-            <p className="text-xl text-on-surface opacity-80 max-w-3xl mx-auto">
-              {homeData.activeQuest!.description}
-            </p>
+          <section className="w-full">
+            <ThemeCard className="p-8 md:p-12 text-center">
+              <h2 className="text-sm uppercase font-bold text-primary tracking-widest mb-4">Current Main Objective</h2>
+              <h3 className="text-4xl md:text-5xl font-bold text-on-surface mb-6">{homeData.activeQuest!.title}</h3>
+              <p className="text-xl text-on-surface opacity-80 max-w-3xl mx-auto">
+                {homeData.activeQuest!.description}
+              </p>
+            </ThemeCard>
           </section>
         )}
       </div>
+
+      <ThemeDivider preset={themePreset} />
 
       {/* 6. Quest Board (Handwritten Style) */}
       {hasNoticeBoard && (
@@ -150,26 +164,34 @@ export default function Home() {
         </section>
       )}
 
+      <ThemeDivider preset={themePreset} />
+
       {/* 7. Directory Links */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Link href="/timeline" className="bg-surface-container-low p-8 rounded-3xl hover:bg-surface-container transition-colors group">
-            <h3 className="text-2xl font-bold text-primary mb-2 flex items-center justify-between">
-              Timeline <ArrowRight className="text-primary opacity-0 group-hover:opacity-100 transition-opacity -translate-x-4 group-hover:translate-x-0" />
-            </h3>
-            <p className="text-on-surface">The chronological record of the party&apos;s journey.</p>
+          <Link href="/timeline" className="group">
+            <ThemeCard className="p-8 h-full">
+              <h3 className="text-2xl font-bold text-primary mb-2 flex items-center justify-between">
+                Timeline <ArrowRight className="text-primary opacity-0 group-hover:opacity-100 transition-opacity -translate-x-4 group-hover:translate-x-0" />
+              </h3>
+              <p className="text-on-surface">The chronological record of the party&apos;s journey.</p>
+            </ThemeCard>
           </Link>
-          <Link href="/locations" className="bg-surface-container-low p-8 rounded-3xl hover:bg-surface-container transition-colors group">
-            <h3 className="text-2xl font-bold text-secondary mb-2 flex items-center justify-between">
-              Locations <ArrowRight className="text-secondary opacity-0 group-hover:opacity-100 transition-opacity -translate-x-4 group-hover:translate-x-0" />
-            </h3>
-            <p className="text-on-surface">Maps, places, and significant areas visited.</p>
+          <Link href="/locations" className="group">
+            <ThemeCard className="p-8 h-full">
+              <h3 className="text-2xl font-bold text-secondary mb-2 flex items-center justify-between">
+                Locations <ArrowRight className="text-secondary opacity-0 group-hover:opacity-100 transition-opacity -translate-x-4 group-hover:translate-x-0" />
+              </h3>
+              <p className="text-on-surface">Maps, places, and significant areas visited.</p>
+            </ThemeCard>
           </Link>
-          <Link href="/npcs" className="bg-surface-container-low p-8 rounded-3xl hover:bg-surface-container transition-colors group">
-            <h3 className="text-2xl font-bold text-tertiary mb-2 flex items-center justify-between">
-              Characters <ArrowRight className="text-tertiary opacity-0 group-hover:opacity-100 transition-opacity -translate-x-4 group-hover:translate-x-0" />
-            </h3>
-            <p className="text-on-surface">People of interest met along the way.</p>
+          <Link href="/npcs" className="group">
+            <ThemeCard className="p-8 h-full">
+              <h3 className="text-2xl font-bold text-tertiary mb-2 flex items-center justify-between">
+                Characters <ArrowRight className="text-tertiary opacity-0 group-hover:opacity-100 transition-opacity -translate-x-4 group-hover:translate-x-0" />
+              </h3>
+              <p className="text-on-surface">People of interest met along the way.</p>
+            </ThemeCard>
           </Link>
         </div>
       </section>

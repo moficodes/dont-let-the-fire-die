@@ -140,6 +140,14 @@ export interface ThemeColorSet {
   onSecondaryContainer?: string;
   tertiary?: string;
   tertiaryContainer?: string;
+  radiusContainer?: string;
+  borderContainer?: string;
+  shadowContainer?: string;
+  clipPathContainer?: string;
+  transitionSpeed?: string;
+  hoverTransform?: string;
+  hoverShadow?: string;
+  hoverBorderColor?: string;
 }
 
 export interface CalendarConfig {
