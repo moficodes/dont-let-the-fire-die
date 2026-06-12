@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Cinzel, Share_Tech_Mono, Orbitron } from "next/font/google";
+import { Plus_Jakarta_Sans, Cinzel, Share_Tech_Mono, Orbitron, Special_Elite, Macondo, Berkshire_Swash, Uncial_Antiqua } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 import { Navbar } from "./components/navbar";
@@ -27,6 +27,30 @@ const orbitron = Orbitron({
   subsets: ["latin"],
 });
 
+const specialElite = Special_Elite({
+  variable: "--font-special-elite",
+  weight: "400",
+  subsets: ["latin"],
+});
+
+const macondo = Macondo({
+  variable: "--font-macondo",
+  weight: "400",
+  subsets: ["latin"],
+});
+
+const berkshireSwash = Berkshire_Swash({
+  variable: "--font-berkshire-swash",
+  weight: "400",
+  subsets: ["latin"],
+});
+
+const uncialAntiqua = Uncial_Antiqua({
+  variable: "--font-uncial-antiqua",
+  weight: "400",
+  subsets: ["latin"],
+});
+
 export async function generateMetadata(): Promise<Metadata> {
   const data = getCampaignData();
   const header = data.home.header;
@@ -48,34 +72,19 @@ export default function RootLayout({
   const settings = data.settings || { gameSystem: "daggerheart", themePreset: "fantasy-parchment" };
   const themePreset = settings.themePreset || "fantasy-parchment";
   
-  // Resolve Font variable based on preset
-  let activeFontVar = "var(--font-plus-jakarta)";
-  if (themePreset === "gothic-horror" || themePreset === "heroic") {
-    activeFontVar = "var(--font-cinzel)";
-  } else if (themePreset === "cyberpunk" || themePreset === "gritty") {
-    activeFontVar = "var(--font-share-tech-mono)";
-  } else if (themePreset === "space-scifi") {
-    activeFontVar = "var(--font-orbitron)";
-  }
-
   // Get CSS String with inline overrides
   const themeStyles = getThemeStyles(themePreset, settings.customTheme);
-  const fontOverride = `
-    :root, .dark {
-      --font-active: ${activeFontVar};
-    }
-  `;
 
   const backgrounds = settings.backgrounds;
 
   return (
     <html
       lang="en"
-      className={`${plusJakartaSans.variable} ${cinzel.variable} ${shareTechMono.variable} ${orbitron.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${cinzel.variable} ${shareTechMono.variable} ${orbitron.variable} ${specialElite.variable} ${macondo.variable} ${berkshireSwash.variable} ${uncialAntiqua.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
-        <style dangerouslySetInnerHTML={{ __html: themeStyles + fontOverride }} />
+        <style dangerouslySetInnerHTML={{ __html: themeStyles }} />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-surface text-on-surface relative">
         {backgrounds?.global && (
