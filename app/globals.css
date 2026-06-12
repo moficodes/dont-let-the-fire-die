@@ -59,10 +59,15 @@
   --color-tertiary: var(--tertiary);
   --color-tertiary-container: var(--tertiary-container);
 
-  --font-sans: var(--font-active), Arial, Helvetica, sans-serif;
+  --font-sans: var(--font-active-body), Arial, Helvetica, sans-serif;
+  --font-serif: var(--font-active-heading), Georgia, serif;
 }
 
 body {
   background: var(--surface);
   color: var(--on-surface);
+}
+
+h1, h2, h3, h4, h5, h6, .font-display, .font-serif {
+  font-family: var(--font-active-heading), Georgia, serif;
 }

@@ -1,19 +1,19 @@
 import { ThemeColorSet } from '@/types';
 
-export const themeFonts: Record<string, string> = {
-  'fantasy-parchment': 'var(--font-cinzel)',
-  'gothic-horror': 'var(--font-uncial-antiqua)',
-  'heroic': 'var(--font-cinzel)',
-  'gritty': 'var(--font-special-elite)',
-  'whimsical': 'var(--font-macondo)',
-  'cyberpunk': 'var(--font-orbitron)',
-  'space-scifi': 'var(--font-orbitron)',
-  'pirate': 'var(--font-berkshire-swash)',
-  'horror': 'var(--font-uncial-antiqua)',
-  'lovecraftian': 'var(--font-orbitron)',
-  'fey': 'var(--font-macondo)',
-  'underworld': 'var(--font-share-tech-mono)',
-  'steampunk': 'var(--font-special-elite)',
+export const themeFonts: Record<string, { heading: string; body: string }> = {
+  'fantasy-parchment': { heading: 'var(--font-cinzel)', body: 'var(--font-plus-jakarta)' },
+  'gothic-horror': { heading: 'var(--font-uncial-antiqua)', body: 'var(--font-lora)' },
+  'heroic': { heading: 'var(--font-marcellus)', body: 'var(--font-spectral)' },
+  'gritty': { heading: 'var(--font-special-elite)', body: 'var(--font-courier-prime)' },
+  'whimsical': { heading: 'var(--font-rancho)', body: 'var(--font-fredoka)' },
+  'cyberpunk': { heading: 'var(--font-oxanium)', body: 'var(--font-share-tech-mono)' },
+  'space-scifi': { heading: 'var(--font-orbitron)', body: 'var(--font-rajdhani)' },
+  'pirate': { heading: 'var(--font-berkshire-swash)', body: 'var(--font-eb-garamond)' },
+  'horror': { heading: 'var(--font-creepster)', body: 'var(--font-crimson-text)' },
+  'lovecraftian': { heading: 'var(--font-metamorphous)', body: 'var(--font-syne)' },
+  'fey': { heading: 'var(--font-macondo)', body: 'var(--font-quicksand)' },
+  'underworld': { heading: 'var(--font-russo-one)', body: 'var(--font-chivo)' },
+  'steampunk': { heading: 'var(--font-rye)', body: 'var(--font-pt-mono)' },
 };
 
 export const themePresets: Record<string, { light: ThemeColorSet; dark: ThemeColorSet }> = {
@@ -554,17 +554,19 @@ export function getThemeStyles(preset: string, custom?: { light?: ThemeColorSet;
       .join('\n');
   };
 
-  const fontVar = themeFonts[preset] || 'var(--font-plus-jakarta)';
+  const fontPreset = themeFonts[preset] || themeFonts['fantasy-parchment'];
 
   return `
 :root {
 ${formatVariables(light)}
-  --font-active: ${fontVar};
+  --font-active-heading: ${fontPreset.heading};
+  --font-active-body: ${fontPreset.body};
 }
 
 .dark {
 ${formatVariables(dark)}
-  --font-active: ${fontVar};
+  --font-active-heading: ${fontPreset.heading};
+  --font-active-body: ${fontPreset.body};
 }
   `.trim();
 }
