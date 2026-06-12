@@ -6,10 +6,16 @@ export function formatGameTime(time: GameTime): string {
     result += ` - ${time.era}`;
   }
   if (time.hour !== undefined && time.minute !== undefined) {
-    const period = time.hour >= 12 ? 'PM' : 'AM';
-    const hour12 = time.hour % 12 || 12;
-    const min = time.minute.toString().padStart(2, '0');
-    result += ` at ${hour12}:${min} ${period}`;
+    if (time.era === 'Age of Umbra') {
+      const hr = time.hour.toString().padStart(2, '0');
+      const min = time.minute.toString().padStart(2, '0');
+      result += ` at ${hr}:${min}`;
+    } else {
+      const period = time.hour >= 12 ? 'PM' : 'AM';
+      const hour12 = time.hour % 12 || 12;
+      const min = time.minute.toString().padStart(2, '0');
+      result += ` at ${hour12}:${min} ${period}`;
+    }
   }
   return result;
 }
