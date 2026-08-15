@@ -53,12 +53,6 @@ locations:
     description: >-
       A dangerous, mist-choked wetland located north of Okros, filled with
       mutated beasts and terrifying horrors.
-  - id: cradle-of-lament
-    name: Cradle of Lament
-    region: Idol Hollows
-    description: >-
-      A nearby refuge whose protection recently failed when its Sacred Pyre was
-      destroyed.
   - id: shalk-chasm
     name: Shalk Chasm
     region: Idol Hollows
@@ -76,8 +70,9 @@ locations:
     name: Flaxenwood
     region: Idol Hollows
     description: >-
-      The home village of the party and Garb, currently facing darkness and
-      despair without a burning Sacred Pyre to ward off the encroaching Umbra.
+      The home village of the party and Garb whose protection recently failed
+      when its Sacred Pyre was destroyed, plunging the sanctuary into the
+      vulnerability and despair of the encroaching Umbra.
 timeline:
   title: Campaign Timeline
   subtitle: The story so far
@@ -113,7 +108,7 @@ timeline:
         deep sinkhole known as the Shalk Chasm and exposing long-buried
         structures from the Old World.
     - id: evt-cradle-destroyed
-      title: The Cradle's Fire Dies
+      title: Flaxenwood's Fire Dies
       time:
         era: Age of Umbra
         year: 100
@@ -122,11 +117,10 @@ timeline:
         hour: 7
         minute: 0
       type: drawback
-      locationId: cradle-of-lament
+      locationId: flaxenwood
       description: >-
-        Just an hour after the earthquake, the Sacred Pyre in the Cradle of
-        Lament is destroyed, plunging the sanctuary into the vulnerability of
-        the dark.
+        Just an hour after the earthquake, the Sacred Pyre in Flaxenwood is
+        destroyed, plunging the sanctuary into the vulnerability of the dark.
     - id: evt-journey-begins
       title: The Journey Begins
       time:
