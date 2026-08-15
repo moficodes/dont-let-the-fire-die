@@ -10,32 +10,43 @@ home:
       a way to save this broken realm before all is lost to darkness.
     navBrand: Death Awaits You!
   nextSession: To Be Scheduled
-  lastLocationId: okros
-  nextDestinationId: sunken-swamp
   activeQuest:
-    title: Search the Sunken Swamp for a blessed branch
+    title: Investigate the Okros Refugee Crisis
     status: active
-    locationId: sunken-swamp
+    locationId: okros
     description: >-
-      The party must venture north of Okros into the dangerous, mist-choked Sunken
-      Swamp to find a Blessed Branch to reignite a Sacred Pyre and bring a point
-      of light back to the dark.
+      Discover why refugees from surrounding settlements like Flaxenwood are
+      flooding Okros and why the city gates have been sealed.
   questList:
     - title: Find a Blessed Branch
-      status: active
+      status: completed
       locationId: sunken-swamp
       description: >-
-        Locate a holy, ancient Blessed Branch to allow the light of a Sacred Pyre
-        to stand resilient against the Umbra once more.
+        Locate a holy, ancient Blessed Branch to allow the light of a Sacred
+        Pyre to stand resilient against the Umbra once more.
+    - title: Investigate the Okros Refugee Crisis
+      status: active
+      locationId: okros
+      description: >-
+        Discover why refugees from surrounding settlements like Flaxenwood are
+        flooding Okros and why the city gates have been sealed.
+    - title: Rekindle the Flaxenwood Sacred Pyre
+      status: pending
+      locationId: flaxenwood
+      description: >-
+        Journey back to Flaxenwood with the retrieved Blessed Branch to ignite a
+        new Sacred Pyre and protect the settlement.
+  lastLocationId: sunken-swamp
+  nextDestinationId: okros
 locations:
   - id: okros
     name: Okros
     region: Idol Hollows
     description: >-
-      An emergent fort village standing resilient for over fifty years within the
-      swampy flood plains of the mountain-crowned Idol Hollows. Its massive walls
-      of melted shields and stone encircle the central Sacred Pyre, whose flames
-      serve as a beacon of hope and safety.
+      An emergent fort village standing resilient for over fifty years within
+      the swampy flood plains of the mountain-crowned Idol Hollows. Its massive
+      walls of melted shields and stone encircle the central Sacred Pyre, whose
+      flames serve as a beacon of hope and safety.
   - id: sunken-swamp
     name: Sunken Swamp
     region: Idol Hollows
@@ -61,6 +72,12 @@ locations:
     description: >-
       The fallen and haunted capital city. It houses the Celsian Athenaeum
       stronghold and is contested by the ruthless Damask Queens raider faction.
+  - id: flaxenwood
+    name: Flaxenwood
+    region: Idol Hollows
+    description: >-
+      The home village of the party and Garb, currently facing darkness and
+      despair without a burning Sacred Pyre to ward off the encroaching Umbra.
 timeline:
   title: Campaign Timeline
   subtitle: The story so far
@@ -108,8 +125,8 @@ timeline:
       locationId: cradle-of-lament
       description: >-
         Just an hour after the earthquake, the Sacred Pyre in the Cradle of
-        Lament is destroyed, plunging the sanctuary into the vulnerability of the
-        dark.
+        Lament is destroyed, plunging the sanctuary into the vulnerability of
+        the dark.
     - id: evt-journey-begins
       title: The Journey Begins
       time:
@@ -140,6 +157,57 @@ timeline:
         Deep within the marshlands, the party encounters an Umbra-Touched Boar,
         its mouth twisted into thrashing tentacles and extra hands reaching from
         its torso.
+    - id: evt-lady-of-curiosity
+      title: The Lady of Curiosity
+      type: npc_meet
+      locationId: sunken-swamp
+      description: >-
+        While resting in an open grove surrounded by mindlessly circling
+        horrors, the party encounters the Lady of Curiosity—a Clank carrying a
+        staff stacked with heads. Zenith persuades her to spare them, though she
+        claims she will collect their heads in death, and identifies Tomaś as a
+        Celestial.
+      time:
+        era: Age of Umbra
+        year: 100
+        month: Shade-Weave
+        day: 19
+        hour: 14
+        minute: 0
+    - id: evt-blessed-branch
+      title: Claiming the Blessed Branch
+      type: achievement
+      locationId: sunken-swamp
+      description: >-
+        Deep within a hollowed-out ancient tree, the party secures the Blessed
+        Branch. When a being of thousands of hands grapples Fury, she uses the
+        branch's divine energy to heal it, receiving a vision of a terrified
+        young religious leader from the Old World. Zenith also witnesses a
+        vision of Celestials perishing during the gods' abandonment.
+      time:
+        era: Age of Umbra
+        year: 100
+        month: Shade-Weave
+        day: 20
+        hour: 11
+        minute: 0
+    - id: evt-okros-refugees
+      title: Turmoil at the Gates of Okros
+      type: drawback
+      locationId: okros
+      description: >-
+        Returning to Okros after a day and a half of travel, the party discovers
+        a sprawling refugee camp outside the walls. They meet Garb, a Firbolg
+        from Flaxenwood who lost his son on the journey. With the city locked
+        down and turned away refugees, shouts of "Open the gates!" erupt from
+        within.
+      time:
+        era: Age of Umbra
+        year: 100
+        month: Shade-Weave
+        day: 21
+        hour: 18
+        minute: 0
 players:
   - id: stan-jr
     name: Stan Jr.
@@ -207,7 +275,9 @@ npcs:
     role: Fighter
     location: okros
     description: >-
-      A young human fighter traveling with Stan Jr.
+      A young human fighter traveling with the party, recently revealed by the
+      Lady of Curiosity to be of Celestial descent—a heritage he was previously
+      unaware of.
   - id: biff
     name: Biff
     role: Warrior
@@ -215,3 +285,20 @@ npcs:
     description: >-
       A Drakona warrior traveling with the party. He is a quiet individual of
       very few words.
+  - id: lady-of-curiosity
+    name: Lady of Curiosity
+    role: Information & Head Collector
+    location: sunken-swamp
+    description: >-
+      An enigmatic and macabre Clank who traverses the Umbra carrying a staff
+      stacked with severed heads. She collects knowledge and secrets, formed a
+      curious bond with Zenith, and revealed that Tomaś possesses Celestial
+      blood.
+  - id: garb-firbolg
+    name: Garb
+    role: Flaxenwood Refugee
+    location: okros
+    description: >-
+      A grief-stricken Firbolg villager from Flaxenwood stranded outside the
+      gates of Okros after losing his son during the grueling trek across the
+      wastes.

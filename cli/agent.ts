@@ -1,6 +1,46 @@
-import { Command } from "commander";
+import { Command, InvalidArgumentError } from "commander";
 import { readCampaign, writeCampaign } from "./data";
 import path from "path";
+
+export function parseInteger(val: string): number {
+  const parsed = parseInt(val, 10);
+  if (Number.isNaN(parsed) || !/^-?\d+$/.test(val.trim())) {
+    throw new InvalidArgumentError(`Not a valid integer: "${val}".`);
+  }
+  return parsed;
+}
+
+export const DEFAULT_GAME_TIME = {
+  era: "Age of Umbra",
+  year: 0,
+  month: "",
+  day: 1,
+  hour: 0,
+  minute: 0,
+};
+
+const TIME_KEYS = new Set(["era", "year", "month", "day", "hour", "minute"]);
+
+export function extractTimeFields(options: Record<string, any>): Record<string, any> {
+  const timeFields: Record<string, any> = {};
+  if (options.era !== undefined) timeFields.era = options.era;
+  if (options.year !== undefined) timeFields.year = options.year;
+  if (options.month !== undefined) timeFields.month = options.month;
+  if (options.day !== undefined) timeFields.day = options.day;
+  if (options.hour !== undefined) timeFields.hour = options.hour;
+  if (options.minute !== undefined) timeFields.minute = options.minute;
+  return timeFields;
+}
+
+export function omitTimeFields(options: Record<string, any>): Record<string, any> {
+  const rest: Record<string, any> = {};
+  for (const [key, value] of Object.entries(options)) {
+    if (!TIME_KEYS.has(key)) {
+      rest[key] = value;
+    }
+  }
+  return rest;
+}
 
 const program = new Command();
 const CAMPAIGN_FILE = path.join(process.cwd(), "data", "campaign.yml");
@@ -174,6 +214,13 @@ event.command("add")
   .requiredOption("--title <string>", "Event Title")
   .option("--type <string>", "Event Type")
   .option("--description <string>", "Event Description")
+  .option("--locationId <string>", "Location ID")
+  .option("--era <string>", "Era")
+  .option("--year <number>", "Year", parseInteger)
+  .option("--month <string>", "Month")
+  .option("--day <number>", "Day", parseInteger)
+  .option("--hour <number>", "Hour", parseInteger)
+  .option("--minute <number>", "Minute", parseInteger)
   .action(async (options) => {
     try {
       const data = await readCampaign(CAMPAIGN_FILE);
@@ -181,7 +228,18 @@ event.command("add")
         console.error(`Event with id ${options.id} already exists.`);
         process.exit(1);
       }
-      data.timeline.events.push({ ...options });
+
+      const rest = omitTimeFields(options);
+      const timeFields = extractTimeFields(options);
+      const newEvent: any = {
+        ...rest,
+        time: {
+          ...DEFAULT_GAME_TIME,
+          ...timeFields,
+        },
+      };
+
+      data.timeline.events.push(newEvent);
       await writeCampaign(data, CAMPAIGN_FILE);
       console.log(`Added Event: ${options.title}`);
     } catch (err) {
@@ -195,6 +253,13 @@ event.command("update")
   .option("--title <string>")
   .option("--type <string>")
   .option("--description <string>")
+  .option("--locationId <string>")
+  .option("--era <string>")
+  .option("--year <number>", "Year", parseInteger)
+  .option("--month <string>")
+  .option("--day <number>", "Day", parseInteger)
+  .option("--hour <number>", "Hour", parseInteger)
+  .option("--minute <number>", "Minute", parseInteger)
   .action(async (id, options) => {
     try {
       const data = await readCampaign(CAMPAIGN_FILE);
@@ -203,7 +268,22 @@ event.command("update")
         console.error(`Event with id ${id} not found.`);
         process.exit(1);
       }
-      data.timeline.events[index] = { ...data.timeline.events[index], ...options };
+
+      const rest = omitTimeFields(options);
+      const timeUpdates = extractTimeFields(options);
+
+      data.timeline.events[index] = {
+        ...data.timeline.events[index],
+        ...rest,
+      };
+
+      if (Object.keys(timeUpdates).length > 0) {
+        data.timeline.events[index].time = {
+          ...(data.timeline.events[index].time || DEFAULT_GAME_TIME),
+          ...timeUpdates,
+        };
+      }
+
       await writeCampaign(data, CAMPAIGN_FILE);
       console.log(`Updated Event: ${id}`);
     } catch (err) {
@@ -247,11 +327,11 @@ player.command("add")
   .requiredOption("--id <string>", "Player ID")
   .requiredOption("--name <string>", "Player Name")
   .option("--class <string>", "Player Class")
-  .option("--level <number>", "Player Level", parseInt)
+  .option("--level <number>", "Player Level", parseInteger)
   .option("--ancestry <string>", "Player Ancestry")
   .option("--community <string>", "Player Community")
   .option("--subclass <string>", "Player Subclass")
-  .option("--tier <number>", "Player Tier", parseInt)
+  .option("--tier <number>", "Player Tier", parseInteger)
   .action(async (options) => {
     try {
       const data = await readCampaign(CAMPAIGN_FILE);
@@ -297,11 +377,11 @@ player.command("update")
   .argument("<id>", "Player ID")
   .option("--name <string>")
   .option("--class <string>")
-  .option("--level <number>", "Player Level", parseInt)
+  .option("--level <number>", "Player Level", parseInteger)
   .option("--ancestry <string>")
   .option("--community <string>")
   .option("--subclass <string>")
-  .option("--tier <number>", "Player Tier", parseInt)
+  .option("--tier <number>", "Player Tier", parseInteger)
   .option("--image <string>")
   .option("--description <string>")
   .option("--backstory <string>")
@@ -409,6 +489,34 @@ quest.command("update")
     }
   });
 
+quest.command("activate")
+  .argument("<title>", "Quest Title to activate")
+  .action(async (title) => {
+    try {
+      const data = await readCampaign(CAMPAIGN_FILE);
+      if (!data.home.questList) {
+        data.home.questList = [];
+      }
+      const targetQuest = data.home.questList.find((q: any) => q.title === title);
+      if (!targetQuest) {
+        console.error(`Quest with title "${title}" not found in questList.`);
+        process.exit(1);
+      }
+      targetQuest.status = "active";
+      data.home.activeQuest = {
+        title: targetQuest.title,
+        status: "active",
+        locationId: targetQuest.locationId,
+        ...(targetQuest.description !== undefined ? { description: targetQuest.description } : {}),
+      };
+      await writeCampaign(data, CAMPAIGN_FILE);
+      console.log(`Activated Quest: ${title}`);
+    } catch (err) {
+      console.error(err);
+      process.exit(1);
+    }
+  });
+
 quest.command("delete")
   .argument("<title>", "Quest Title")
   .action(async (title) => {
@@ -442,4 +550,6 @@ quest.command("delete")
     }
   });
 
-program.parse(process.argv);
+if (import.meta.main) {
+  program.parse(process.argv);
+}
