@@ -11,12 +11,12 @@ home:
     navBrand: Death Awaits You!
   nextSession: To Be Scheduled
   activeQuest:
-    title: Investigate the Okros Refugee Crisis
+    title: Escape the Okros Ambush
     status: active
     locationId: okros
     description: >-
-      Discover why refugees from surrounding settlements like Flaxenwood are
-      flooding Okros and why the city gates have been sealed.
+      Break through Syzl's militia encirclement at the hillside church garden
+      and safely escape the fortified town of Okros with the Blessed Branch.
   questList:
     - title: Find a Blessed Branch
       status: completed
@@ -25,7 +25,7 @@ home:
         Locate a holy, ancient Blessed Branch to allow the light of a Sacred
         Pyre to stand resilient against the Umbra once more.
     - title: Investigate the Okros Refugee Crisis
-      status: active
+      status: completed
       locationId: okros
       description: >-
         Discover why refugees from surrounding settlements like Flaxenwood are
@@ -36,17 +36,32 @@ home:
       description: >-
         Journey back to Flaxenwood with the retrieved Blessed Branch to ignite a
         new Sacred Pyre and protect the settlement.
-  lastLocationId: sunken-swamp
-  nextDestinationId: okros
+    - title: Escape the Okros Ambush
+      status: active
+      locationId: okros
+      description: >-
+        Break through Syzl's militia encirclement at the hillside church garden
+        and safely escape the fortified town of Okros with the Blessed Branch.
+    - title: Flaxenwood Relief Expedition
+      status: pending
+      locationId: flaxenwood
+      description: >-
+        Journey back to Flaxenwood through the Umbra to locate survivors, bring
+        them back to Okros, or rekindle Flaxenwood's Sacred Pyre if the
+        situation is dire.
+  lastLocationId: okros
+  nextDestinationId: flaxenwood
 locations:
   - id: okros
     name: Okros
     region: Idol Hollows
     description: >-
-      An emergent fort village standing resilient for over fifty years within
-      the swampy flood plains of the mountain-crowned Idol Hollows. Its massive
-      walls of melted shields and stone encircle the central Sacred Pyre, whose
-      flames serve as a beacon of hope and safety.
+      An emergent fortified town of melted shields and stone built around a
+      central Sacred Pyre. Typically home to 2,500–3,000 residents, the collapse
+      of surrounding village pyres has flooded Okros with over 4,000 refugees
+      residing in dense tent encampments inside the walls and outside both
+      eastern and western gates. The hillside church serves as weekly worship
+      space, emergency council chamber, and crisis operations center.
   - id: sunken-swamp
     name: Sunken Swamp
     region: Idol Hollows
@@ -204,6 +219,47 @@ timeline:
         day: 21
         hour: 18
         minute: 0
+    - id: evt-okros-midnight-council
+      title: The Midnight Council at Okros
+      type: npc_meet
+      locationId: okros
+      description: >-
+        Syzl admits the party through the gates after spotting the Blessed
+        Branch's beacon-like glow across the wastes. Passing sprawling refugee
+        tent cities, the party is escorted to the hillside church where the
+        council remains assembled near midnight. Orion takes Zenith toward the
+        central pyre, explaining that Okros's 2,500-capacity infrastructure is
+        collapsing under 4,000+ refugees, proposing a second sacred pyre in
+        Okros. Simultaneously, Elder Akadona privately informs Stan Jr. and Fury
+        that council hardliners favored taking the branch by force, leaving the
+        moral burden of saving the refugees in the party's hands.
+      time:
+        era: Age of Umbra
+        year: 100
+        month: Shade-Weave
+        day: 21
+        hour: 19
+        minute: 0
+    - id: evt-church-garden-ambush
+      title: Dawn Ambush at the Church Garden
+      type: combat
+      locationId: okros
+      description: >-
+        Resting in the church garden, the party resolves to return to Flaxenwood
+        to rescue survivors before committing the branch, leaving Tomaś and Biff
+        behind in safety while Biff scours the church for supplies. Anticipating
+        the council's hostility if they refuse to relinquish the branch, the
+        party sneaks out at dawn. However, Syzl anticipated their flight,
+        positioning rooftop guards on adjacent buildings. As Stan Jr. and Zenith
+        attempt to break out on foot, Syzl and his militia confront them, while
+        Fury takes flight above the church clutching the glowing Blessed Branch.
+      time:
+        era: Age of Umbra
+        year: 100
+        month: Shade-Weave
+        day: 22
+        hour: 6
+        minute: 0
 players:
   - id: stan-jr
     name: Stan Jr.
@@ -290,16 +346,18 @@ npcs:
     role: Fighter
     location: okros
     description: >-
-      A young human fighter traveling with the party, recently revealed by the
-      Lady of Curiosity to be of Celestial descent—a heritage he was previously
-      unaware of.
+      A young human fighter of hidden Celestial heritage. Deemed too vulnerable
+      for the perilous return journey to Flaxenwood, he was left sheltered in
+      the quiet sanctuary of the church back garden in Okros alongside Biff.
   - id: biff
     name: Biff
     role: Warrior
     location: okros
     description: >-
-      A Drakona warrior traveling with the party. He is a quiet individual of
-      very few words.
+      A skittish human rogue who aids the party. Deciding he and Tomaś would be
+      liabilities in the dangerous trek back to Flaxenwood, the party left him
+      in the church garden, where he discreetly scavenged church supplies to
+      prepare for whatever comes next.
   - id: lady-of-curiosity
     name: Lady of Curiosity
     role: Information & Head Collector
@@ -330,9 +388,12 @@ npcs:
     role: Okros Militia Leader
     location: okros
     description: >-
-      A stern Drakona leader in the Okros militia who had a hostile altercation
-      with Stan Jr. and the party as they passed through Okros on their search
-      for the Blessed Branch.
+      A stern, battle-weary Drakona commander of the Okros militia. Facing
+      severe overcrowding from 4,000+ refugees and the strain of defending the
+      walls, he admitted the party after spotting the Blessed Branch's glow.
+      Correctly anticipating the party would flee rather than surrender the
+      branch, he placed rooftop snipers above the church garden and blocked
+      their escape with his guards.
   - id: willow
     name: Willow
     role: Elven Rescuer & Companion
@@ -342,12 +403,14 @@ npcs:
       the Gods when Zenith first awakened to consciousness and sentience.
   - id: orion
     name: Orion
-    role: Metalworks Master
+    role: Metalworks Master & Council Member
     location: okros
     description: >-
-      A Clank who oversees the forge and metalworks in Okros. Awakened 100 years
-      ago during the gods' departure like Zenith, sharing the profound, unspoken
-      kinship common to all Clanks.
+      A Clank who awakened to sentience 100 years ago during the divine
+      abandonment, now overseeing the Okros forge and sitting on the town
+      council. Sharing an unspoken kinship with Zenith, he walked Zenith to the
+      central pyre to plead the plight of 4,000+ refugees and proposed igniting
+      a second Sacred Pyre in Okros using the Blessed Branch.
   - id: nyx
     name: Nyx
     role: Faerie Witch & Underborne Matriarch
@@ -364,3 +427,12 @@ npcs:
     description: >-
       A faerie belonging to the subterranean Underborne community beneath
       Flaxenwood, known to Fury.
+  - id: elder-akadona
+    name: Elder Akadona
+    role: Town Elder & Council Leader
+    location: okros
+    description: >-
+      A venerable female orc elder over 120 years old who leads the governing
+      council of Okros. Frail of body and relying on a walking stick, she chose
+      transparency and reason over violence, resisting council hardliners who
+      demanded seizing the party's Blessed Branch by force.
