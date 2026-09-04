@@ -70,9 +70,11 @@ locations:
     name: Flaxenwood
     region: Idol Hollows
     description: >-
-      The home village of the party and Garb whose protection recently failed
-      when its Sacred Pyre was destroyed, plunging the sanctuary into the
-      vulnerability and despair of the encroaching Umbra.
+      The home settlement of the party and Garb, consisting of roughly 500
+      surface villagers alongside a thriving Underborne community of
+      approximately 500 fairies dwelling in the cave networks directly beneath
+      the town. The village is currently plunged into vulnerability following
+      the loss of its Sacred Pyre.
 timeline:
   title: Campaign Timeline
   subtitle: The story so far
@@ -212,8 +214,14 @@ players:
     subclass: ''
     tier: 1
     image: ''
-    description: TBD
-    backstory: TBD
+    description: >-
+      A loyal and vigilant Ribbet Ranger of Flaxenwood, raised from infancy by
+      the village's human lorekeeper Stanley.
+    backstory: >-
+      Found as an orphaned child and taken in by Stanley, Stan Jr. grew up
+      protecting Flaxenwood and learning the wild ways of the Idol Hollows. His
+      straightforward demeanor led to a bitter clash with the Drakona militia
+      leader Syzl during the party's passage through Okros.
     stats:
       agility: 3
       strength: 0
@@ -232,8 +240,15 @@ players:
     subclass: ''
     tier: 1
     image: ''
-    description: TBD
-    backstory: TBD
+    description: >-
+      A stalwart Clank Brawler who awakened to sentience a century ago during
+      the divine abandonment.
+    backstory: >-
+      Gained consciousness 100 years ago when the gods departed the mortal
+      realm, found and guided in his early existence by the elf Willow. Zenith
+      shares the deep instinctual kinship of all awakened Clanks—including Orion
+      of Okros—while repeatedly fending off fanatical zealots bearing the symbol
+      of the Shattered Sun who seek to eradicate all relics of the divine era.
     stats:
       agility: -1
       strength: 2
@@ -252,8 +267,14 @@ players:
     subclass: ''
     tier: 1
     image: ''
-    description: TBD
-    backstory: TBD
+    description: >-
+      A devoted Faerie Seraph born in the Underborne cavern settlement beneath
+      Flaxenwood.
+    backstory: >-
+      Raised in the subterranean cave network beneath Flaxenwood among 500
+      fellow fairies under the maternal guidance of the witch matriarch Nyx.
+      Imbued with sacred lore and light, Fury ventures above to rekindle hope
+      for both the surface dwellers and her underground kin.
     stats:
       agility: 1
       strength: 3
@@ -296,3 +317,50 @@ npcs:
       A grief-stricken Firbolg villager from Flaxenwood stranded outside the
       gates of Okros after losing his son during the grueling trek across the
       wastes.
+  - id: stanley
+    name: Stanley
+    role: Human Lorekeeper & Foster Father
+    location: flaxenwood
+    description: >-
+      A wise human lorekeeper residing in Flaxenwood who took in Stan Jr. as an
+      orphaned child at a very young age, raising and mentoring him as a loving
+      father figure.
+  - id: syzl
+    name: Syzl
+    role: Okros Militia Leader
+    location: okros
+    description: >-
+      A stern Drakona leader in the Okros militia who had a hostile altercation
+      with Stan Jr. and the party as they passed through Okros on their search
+      for the Blessed Branch.
+  - id: willow
+    name: Willow
+    role: Elven Rescuer & Companion
+    location: flaxenwood
+    description: >-
+      An elf who discovered Zenith nearly 100 years ago during the Betrayal of
+      the Gods when Zenith first awakened to consciousness and sentience.
+  - id: orion
+    name: Orion
+    role: Metalworks Master
+    location: okros
+    description: >-
+      A Clank who oversees the forge and metalworks in Okros. Awakened 100 years
+      ago during the gods' departure like Zenith, sharing the profound, unspoken
+      kinship common to all Clanks.
+  - id: nyx
+    name: Nyx
+    role: Faerie Witch & Underborne Matriarch
+    location: flaxenwood
+    description: >-
+      A venerable faerie witch, lorekeeper, and matriarch of the 500-strong
+      Underborne faerie colony dwelling in the caves beneath Flaxenwood. She
+      served as a mother and grandmother figure to Fury, imparting deep worldly
+      lore and ancient wisdom.
+  - id: wanda
+    name: Wanda
+    role: Underborne Faerie
+    location: flaxenwood
+    description: >-
+      A faerie belonging to the subterranean Underborne community beneath
+      Flaxenwood, known to Fury.
